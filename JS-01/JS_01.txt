@@ -1,2 +1,47 @@
 #Session 1
 
+console.log("Hellow World");
+
+* Primitives Data Types: (Values which cannot be changed further.)
+    1.Numbers (-100, 3.14, and others), used for math calculations.
+    2.Strings ("hello", "abracadabra", and others), used for text.
+    3.Booleans (true and false), used for logical operations.
+    4.Undefined (undefined), used for unintentionally missing values.
+        var a;
+        console.log(a);         //undefined.
+    5.Null (null), used for intentionally missing values.
+        var a=null;
+        console.log(a);         //null.
+
+* Typeof operator returns a string indicating the type of the operand's value
+    console.log(typeof("Hitesh"));   //String
+    console.log(typeof(5));          //number
+    console.log(typeof(true));       //Booleans
+
+* Variables
+    1.Declaration
+        var a;
+    2.Assignment
+        a=5;
+    3.Declaration + Assignment
+        var a=5;
+    4.Re-Assignment
+        var a=5;
+        a=6;
+    5.Re-Declaration
+        var a=7;
+
+* Const - Declaring a variable using const creates a variable whose value can’t be changed.
+
+Keyword                   Var                         Let                   Const
+Allows re-declaration     ✅                          ❌                    ❌
+Allows re-assignment?     ✅                          ✅                    ❌
+
+* Valid variable names should:
+    Start with a letter, underscore, or dollar sign.
+    After the first letter, you can use numbers, letters, underscores, dollar signs.
+
+------------------------------------xxx-------------------------------------
+
+#Session 2
+
