@@ -45,3 +45,28 @@ Allows re-assignment?     ✅                          ✅                    �
 
 #Session 2
 
+{Expressions,Mathematical Operators,Relational / Logical Operators,If-Else statements,Functions}
+
+* Computers should return NaN when they can't find the operation result. 
+  For example, when it's impossible to compute or the operation itself is invalid
+
+* Which ever values visible in code are Literals.
+
+* Functions
+    Define a function - Ex. :
+
+        function functionName() {
+            console.log("Inside the function");		// function body within {}
+        }
+
+    Call a function - Ex. :
+		functionName();						// which will then print the msg
+
+* Parameters or Arguments ?        /-----------------------Parameter
+    function parametricFunction(param) {
+        console.log(param);            
+    }
+
+    var argument = “Adieu!”;
+    parametricFunction(argument);    
+                             \---------------------Argument
