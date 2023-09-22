@@ -70,3 +70,62 @@ Allows re-assignment?     ✅                          ✅                    �
     var argument = “Adieu!”;
     parametricFunction(argument);    
                              \---------------------Argument
+
+
+------------------------------------XXX-------------------------------
+
+#Session 3
+{Strings}
+
+* console.log(favFood.length)             //Prints length of string.
+
+* charAt() method-
+    console.log(str.charAt(4));
+
+* Individual characters of a String literal cannot be changed.
+  String values are immutable - they cannot be altered once created.
+
+*Strict Mode-
+    Strict mode changes previously accepted "bad syntax" into real errors.
+
+*Template Strings / Template Literals
+    Template literals are literals delimited with backtick (`) characters,
+    allowing for multi-line strings, string interpolation with embedded expressions,
+    and special constructs called tagged templates.
+    eg: const name = 'Jack';
+        console.log(`Hello ${name}!`); // Hello Jack!
+
+    eg:let name="Hitesh";
+       let acc_no:425201;
+
+       let str=`Hey ${name} your account number ${acc_no} is deactivated. Please visit bank branch`;
+
+*The conditional (ternary) operator is the only JavaScript operator that takes three operands:
+     a condition followed by a question mark ( ? ), then an expression to execute if the condition is truthy 
+     followed by a colon ( : ), and finally the expression to execute if the condition is falsy.
+     condition ? exprIfTrue : exprIfFalse
+     eg.const age = 26;
+        const beverage = age >= 21 ? "Beer" : "Juice";
+        console.log(beverage); // "Beer"
+
+* String Methods:
+    1.indexOf("abc")       //gives the first index of abc in string.
+    2.lastIndexOf()        //gives last occurence index of abc in string
+    3.Substring
+        substring(startPos, endPos) extracts a part of a string and returns it in a new string.
+    4.Concat
+        str1.concat(str2) joins two or more strings
+
+--------------------------------------XXX---------------------------------------
+
+#Session 4
+{For loop, Arrays}
+
+
+
+
+
+
+
+
+
