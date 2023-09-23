@@ -121,7 +121,53 @@ Allows re-assignment?     ✅                          ✅                    �
 #Session 4
 {For loop, Arrays}
 
+* For Loop:
+    Syntax:
+	    for (begin ; condition ; step) {
+  		    // ... loop body …
+        }
 
+* Arrays in JavaScript:
+    -With JavaScript array variables, we can store several types of data in one place.
+    -Arrays can store anything as their value - primitives, another array, objects, or even functions.
+    -Array elements can be accessed and modified using bracket notation.
+    -Unlike strings, array entries are mutable & can be changed freely.
+
+* Array Methods:
+    .push() appends data to the end of an array & returns the new array length.
+    .pop() removes the last element from an array and returns the removed element.
+
+    .shift() works like .pop(), but it removes the first element of the array.
+    .unshift() works like .push(), but adds the element at the beginning of the array.    
+
+    Method	    Description
+    concat()	joins two or more arrays and returns a result
+    indexOf()	searches an element of an array and returns its position
+    find()	    returns the first value of an array element that passes a test
+    findIndex()	returns the first index of an array element that passes a test
+    forEach()	calls a function for each element
+    includes()	checks if an array contains a specified element
+    push()	    aads a new element to the end of an array and returns the new length of an array
+    unshift()	adds a new element to the beginning of an array and returns the new length of an array
+    pop()	    removes the last element of an array and returns the removed element
+    shift()	    removes the first element of an array and returns the removed element
+    sort()	    sorts the elements alphabetically in strings and in ascending order
+    slice()	    selects the part of an array and returns the new array
+    splice()	removes or replaces existing elements and/or adds new elements
+
+* Sort & Reverse:
+    sort() 	- Sorts the array elements in-place, in alphabetical, ascending order.
+
+    reverse() - Reverses the order of the elements in the given array, in-place.
+
+
+* Falsy or Truthy Values:
+    -false, null, 0, "", undefined, and NaN are Falsy values in JavaScript.
+    -All values other than these are Truthy, it will evaluate to true.
+
+----------------------------------------------XXX----------------------------------------
+
+#Session 5
 
 
 
