@@ -55,3 +55,248 @@ Solution:
             }
             return x;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Session 4
+    {   1.JavaScript inside Browsers
+        2.The Document Object Model
+        3.JavaScript with HTML
+        4.Selecting DOM Elements 
+        5.Node properties
+    }
+
+* The Document Object Model (DOM):
+    -DOM is the representation of the HTML structure
+        Makes it possible to manipulate a web page programmatically
+        The document object represents a web page loaded on the browser tab.
+    -document object is part of the global window object 
+        Accessed by window.document or document
+
+    -In DOM,
+        Every HTML tag is an object
+        Nested tags are “children” of the enclosing one
+        The text inside a tag is an object as well.
+
+* Nodes in DOM :
+    -Everything inside the DOM including the document object is a DOM node
+        1.document – the “entry point” into DOM.
+        2.element nodes – HTML tags, the tree building blocks (blue)
+        3.text nodes – contain text (green) and space ( yellow)
+        4.comment nodes – contain comments (purple) 
+
+* Selecting Elements - Using HTML:
+    -Like we used CSS Selectors in CSS,  here also we can select elements by 
+        1.Tag names - document.getElementbyTagName(HTML_TAG_NAME)
+        2.Class names - document.getElementsByClassName(ELEMENT_CLASS_NAME)
+        3.ID - document.getElementById(ID)
+        
+        -With tag names and class names we get -> An array like list of elements known as “HTML Collection” 
+        -With id, we get a specific DOM element.
+
+* HTML Collection:
+    -An HTML Collection is an array-like list which we can convert to Array using the Array.from() function of Array class in JS.
+
+        const headingCollection = document.getElementsByClassName("heading");
+        const arr = Array.from(headingCollection);
+
+* Selecting Elements using JavaScript (Part 1):
+
+        <html>
+        <head>
+            <title>FE-2</title>
+            <style>
+            .highlight {
+                color: blue;
+            }
+            </style>
+        </head>
+        <body>
+            <h1 class="highlight">Session 4!</h1>
+            <div id="news">
+            <h1>Headline!</h1>
+            <p>Martians attack people!</p>
+            </div>
+
+            <script>
+            console.log(document.getElementsByTagName("h1"));
+            console.log(document.getElementsByClassName("highlight"));
+            console.log(document.getElementById("news"));
+            </script>
+        </body>
+        </html>
+
+Can we change or manipulate the nodes that we have selected?
+
+Node Properties:
+    1.innerHTML - For the HTML inside the element as a string.
+    2.textContent - For the text inside an element.
+    3.children - For the descendants
+    4.style - to change the appearance
+
+* Changing Elements using JavaScript (Part 2):
+
+        <script>
+        // Headline! Martians attack people!
+        console.log(document.getElementById("news").textContent);
+        console.log(document.getElementById("news").innerHTML);
+
+
+        document.getElementById("news").innerHTML = 
+            “<h1>Breaking news!</h1><p>innerHTML makes it super easy  to set HTML for an element</p>”;
+
+        console.log(document.getElementById("news").textContent);
+        </script>
+
+* Selecting Elements - Using CSS Queries:
+    -To select elements based on CSS queries like #names li we can use querySelector to find the first element which matches the query. 
+    It returns a single HTML element
+    -To find all elements we use querySelectorAll. It returns a Node List which is again an Array-like iterable.
+
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>FE-2</title>
+            </head>
+            <body>
+                <ul id="names">
+                <li>John</li>
+                <li>Mary</li>
+                <li>Dora</li>
+                <li>Donny</li>
+                </ul>
+                <script>
+                console.log(document.querySelector("#names li"));
+                console.log(document.querySelectorAll("#names"));
+                </script>
+            </body>
+            </html>
+
+
+* Summary:
+ Method                             Input                              Returns
+
+getElementsbyTagName                HTML Tag name                      HTML Collection
+getElementsByClassName              Element Class Name                 HTML Collection
+getElementById                      Element’s Unique ID                DOM Node
+querySelector                       CSS Selector                       DOM Node
+querySelectorAll                    CSS Selector                       Node List
+
+Q. Add an list item using JS
+
+    #HTML
+            <ul id="names">
+                <li>John</li>
+                <li>Mary</li>
+            </ul>
+
+    #JS
+            // 1. Create and Edit element
+
+                const ListItemELement = document.createelement（"li"）；
+                listItemELement.innerText = "Suresh";
+
+            //2 → select the parent or LIST
+
+                const list = document.getElementById("names");
+
+            // 3. TO add newly Created ELEMENT we have 2 ways ...
+            //3.1 - Append
+
+                list. append (ListItemELement) ;
+            
+            //3.2 - innerHTML
+
+                list.innnerHTML = list.innerHTML + "<li>Suresh</li>";
+
+            //4 Remove Element
+
+                list.removeChild("ListItemELement")
+
+Q. Delete an element using JS
+
+    #HTML
+        <p id="para1">This is paragrapg</p>
+
+    #JS
+        const paraEle= document.getElementById("para1");
+        paeaEle.remove();
+
+
+* Activity  - Search in list
+    Given the below starter HTML
+        <ul id="names">
+            <li>John</li>
+            <li>Mary</li>
+            <li>Dora</li>
+            <li>Donny</li>
+        </ul>
+    Write a function searchPerson(elemId, name) which takes in a DOM element's id (here "names") and searches the name in the list. 
+        If name is present, log “Found”, else log “Not Found”
+        Eg: searchPerson(“names”, “John”) // logs “Found”
+        Eg: searchPerson(“names”, “Crio.Do”) // logs “Not Found”
+Solution:
+
+        function FindName(name) {
+        const nameList = document.getElementById("nameList"); // parent element
+        console.dir(nameList);
+        const children = nameList.children; // this is HTML COLLECTION ->
+        const childrenArr = Array.from(children);
+
+        console.log("children debug sdfsdfsdf", childrenArr);
+
+        for (let i = 0; i < childrenArr.length; i++) {
+            const listItem = childrenArr[i];
+            const text = listItem.innerText;
+
+            if (text === name) {
+            console.log(name, ": found");
+            return;
+            }
+        }
+
+        console.log(name, ":  not found");
+        }
+
+
+
+
+
+
+
+
+
+
