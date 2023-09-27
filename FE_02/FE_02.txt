@@ -226,7 +226,7 @@ Q. Add an list item using JS
     #JS
             // 1. Create and Edit element
 
-                const ListItemELement = document.createelement（"li"）；
+                const ListItemELement = document.createElement（"li"）；
                 listItemELement.innerText = "Suresh";
 
             //2 → select the parent or LIST
@@ -291,7 +291,26 @@ Solution:
         console.log(name, ":  not found");
         }
 
+* Creating new objects
+    -You updated the text of an HTML element in the previous milestone. Let’s look at how to create new ones now.
 
+    -The document.createElement() method can be used for creating a new element node
+
+    -The append() or appendChild() methods on an element node can be used to add a new child element to it
+
+Q. Create a function, addNewFact(factText). This should add a new <p> element with text denoted by the factText 
+   argument as a child of the <div id="facts-list”> div.
+
+Solution: 
+            function addNewFact(factText) {
+                const pElement = document.createElement("p");
+                pElement.innerText = factText;
+                const divElement = document.getElementById("facts-list");
+                divElement.appendChild(pElement);
+
+            }
+            addNewFact("innerText property refers to the text inside an element");
+            addNewFact("append() or appendChild() methods can add a new child element");
 
 
 
