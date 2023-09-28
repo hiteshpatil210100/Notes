@@ -240,7 +240,9 @@ Q. Add an list item using JS
             
             //3.2 - innerHTML
 
-                list.innnerHTML = list.innerHTML + "<li>Suresh</li>";
+                list.innnerHTML = list.innerHTML + "<li>Suresh</li>";      or   let parentElement = document.getElementById("elem");
+                                                                                appendToParent(parentElement, "li", "Newly added");
+
 
             //4 Remove Element
 
@@ -311,6 +313,68 @@ Solution:
             }
             addNewFact("innerText property refers to the text inside an element");
             addNewFact("append() or appendChild() methods can add a new child element");
+
+
+---------------------------------------XXX-------------------------------------
+
+#Session 5
+{Creating and Inserting elements  into DOM, setTimeout()}
+
+* setTimeout():
+        The setTimeout() is a method inside the window object, it calls the specified function or evaluates a JavaScript 
+        expression provided as a string after a given time period only once. The following output shows the existence 
+        of setTimeout() method inside the window object.
+
+        setTimeout(function, time);
+
+        Parameters: 
+            -function: It is the reference to a function that is going to run after a given time.
+            -time: The milliseconds after which the given function will execute.
+        Return value:
+            -It returns a timer Id which can be useful later in case when you want to clear that countdown timer for function.
+
+        eg.
+            <script>
+                console.log("This is the demo of setTimeout");
+                
+                function alertAfter3Seconds() {
+                    alert("3 Second completed hi!");
+                }
+                setTimeout(alertAfter3Seconds, 3000);
+            </script>
+
+* Javascript is single-threaded
+* Javascript is synchronous
+    - Can only execute one line of code at a time
+    -Only after the current line of code runs to completion can another line of code start executing 
+        i.e, can’t move over to another task if the current one is time intensive operation, 
+        or waiting for something (eg: data over network)
+
+* Web APIs
+    Browsers give JS some additional superpowers in form of Web APIs (i.e, functions) Helps to overcome challenges of being synchronous
+    Some of the most used ones are 
+        1.DOM APIs eg: document.getElementBy*() methods
+        2.console.log()
+        3.setTimeout(), fetch(), localStorage, etc
+
+* setTimeout(callbackFn, ms)
+    -The setTimeout() method is provided by the browser for us to delay tasks (i.e. functions) to be executed after a given time.
+    -Point to note here is that setTimeout(callbackFn, ms) does not invoke exactly after the given number of milliseconds,
+     but instead it will execute at least after the given milliseconds
+    -setTimeout() calls doesn’t block other lines of code from executing while it waits.
+    The setTimeout(callbackFn, ms) method, when invoked, must run the following steps
+    -Run the following steps:
+        Wait ms milliseconds.
+        Invoke callbackFn once the JS Engine gets freed up executing any other instructions
+
+
+------------------------------------------------XXX----------------------------------------
+
+#Session 6
+
+
+
+
 
 
 
