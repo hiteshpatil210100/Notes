@@ -168,6 +168,45 @@ Allows re-assignment?     ✅                          ✅                    �
 ----------------------------------------------XXX----------------------------------------
 
 #Session 5
+{Searching in Array, split(), join(), JS Objects}
+
+* Searching in Arrays:
+    Array.includes(element, fromIndex);
+    eg. 
+        const array1 = [1, 2, 3];
+        console.log(array1.includes(2));
+        // Expected output: true
+
+        const pets = ['cat', 'dog', 'bat'];
+        console.log(pets.includes('cat'));
+        // Expected output: true
+
+        console.log(pets.includes('at'));
+        // Expected output: false
+
+* String to Array using split() method:
+    -Splits a string into an array of substrings.
+       string.split("separator");
+    eg.
+        const parts = "Hi how are you doing today".split(" ");
+        console.log(parts);                                             //['Hi', 'how', 'are', 'you', 'doing', 'today']
+        const parts2 = "Hi how are you doing today".split();
+        console.log(parts2);                                            //['Hi how are you doing today']
+        const parts3 ="My Name is Hitesh".split("");
+        console.log(parts3);                                            //['M', 'y', ' ', 'N', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'H', 'i', 't', 'e', 's', 'h']
+
+* Array to String - join():
+    -Joins an array to form a string.
+        array.join(separator);
+    -If separator string is missing, then default is a comma.
+    eg.
+        var arr = ["Hi", "how", "are", "you", "doing", "today"];
+        const stringFromParts = arr.join("-");
+        console.log(stringFromParts);               //Hi-how-are-you-doing-today
+        const stringFromParts2 = arr.join(" ");
+        console.log(stringFromParts2);              //Hi how are you doing today
+
+
 
 
 
