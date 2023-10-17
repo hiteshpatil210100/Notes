@@ -4,13 +4,38 @@
 
 
 
-
-
-
-
-
-
 ----------------------------------------XXX---------------------------------
 #Session 3
 {Deconstruct any Bootstrap Component, Carousel, Accordion, Image Slideshow Website via Strategic Problem Solving}
+
+
+
+
+
+
+
+#Session 6
+{Object Oriented Programming with JS, Understanding Objects, Constructor Functions, this Keyword, ES6 Classes}
+
+* JavaScript by design is not a class-based object-oriented language but a prototype-based language.
+
+* Constructors:
+    -We can create objects and initialize its properties by using special function called Constructors.
+            // Constructor function for Person objects
+                function Person(first, last, age, eye) {
+                this.firstName = first;
+                this.lastName = last;
+                this.age = age;
+                this.eyeColor = eye;
+                }
+
+            // Create a Person object
+                const myFather = new Person("John", "Doe", 50, "blue");
+
+            // Display age
+                document.getElementById("demo").innerHTML ="My father is " + myFather.age + "."; 
+
+
+
+
 
