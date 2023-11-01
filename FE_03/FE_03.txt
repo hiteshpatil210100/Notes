@@ -39,3 +39,16 @@
 
 
 
+
+
+
+---------------------------------------------XXX-----------------------------------------------
+#Session 10
+{}
+
+* Some Directory related commands
+    1.pwd - Print Working Directory
+    2.ls - List down files and sub-directories in a directory
+    3.cd - Change Directory
+
+
