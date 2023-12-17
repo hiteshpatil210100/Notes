@@ -1,2 +1,41 @@
-Session1
-{}
+#Session1
+{Time Complexity}
+
+Time Complexity: 
+        -Time complexity of an algorithm represents the amount of time taken by the algorithm to run as a function of the size of the input data.
+         It measures the worst-case running time of an algorithm and helps in understanding how the algorithm's performance scales with the size of the input.
+        O(1) (Constant Time): The algorithm's running time does not depend on the size of the input data.
+            Example: Accessing an element in an array by index.
+
+        O(log n) (Logarithmic Time): The algorithm's running time grows logarithmically as the size of the input data increases.
+            Example: Binary search in a sorted array.
+
+        O(n) (Linear Time): The running time of the algorithm grows linearly with the size of the input data.
+            Example: Linear search in an unsorted array.
+
+        O(n log n) (Linearithmic Time): The running time grows in n log n fashion, commonly seen in efficient sorting algorithms like Merge Sort and QuickSort.
+
+        O(n^2) (Quadratic Time): The running time is proportional to the square of the size of the input data.
+            Example: Bubble sort.
+
+        O(2^n) (Exponential Time): The running time doubles with each addition to the input data.
+            Example: Recursive algorithms without memoization that solve problems like the Fibonacci sequence.
+
+        O(n!) (Factorial Time): The running time grows factorially with the size of the input data.
+            Example: Permutation generation algorithms.
+
+Space Complexity:
+    -Space complexity of an algorithm represents the amount of memory space required by the algorithm in relation to the size of the input data.
+     It measures the maximum amount of memory the algorithm uses at any point during its execution.
+     O(1) (Constant Space): The algorithm uses a fixed amount of memory regardless of the size of the input data.
+        Example: Variables, constants.
+
+    O(n) (Linear Space): The space used by the algorithm grows linearly with the size of the input data.
+        Example: Arrays, lists, and other linear data structures proportional to the input size.
+
+    O(n^2), O(n^3), ... (Quadratic, Cubic Space): The space used by the algorithm grows quadratically, cubically, and so on, concerning the input size.
+        Example: 2D arrays, nested data structures.
+
+#Session2
+
+

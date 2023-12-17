@@ -206,11 +206,501 @@ Allows re-assignment?     ✅                          ✅                    �
         const stringFromParts2 = arr.join(" ");
         console.log(stringFromParts2);              //Hi how are you doing today
 
+-const fruits = ["Banana", "Orange", "Apple", "Mango"];
+ let result =  Array.isArray(fruits);                       //true.
+
+ *Introduction to JavaScript Objects:
+    -Objects are another way to store a collection of values. 
+    -Objects are made up of key-value pairs know as properties.
+    eg: {
+            email: “beaver@gmail.com”,
+            name: “Beaver”
+        }
+    -There are 3 ways to create an object: 1.Using object literal
+                                                eg: let person={
+                                                                    email: “beaver@gmail.com”,
+                                                                    name: “Beaver”
+                                                                }
+                                           2.Empty object and then add properties
+                                                eg: let person={}
+                                                    person.name="Hitesh"
+                                                    person.age=23
+                                           3.Using new keyword
+    -Checking Properties:
+        const personalDetails = {
+                    name: "John Doe",
+                    designation: "Data Analyst"
+            }
+        personalDetails.isEngineer = false;
+        console.log(personalDetails.hasOwnProperty('isEngineer'));  // true
+        console.log(personalDetails.hasOwnProperty('Engineer'));    // false
+
+    -Removing properties:
+        delete person.name
+    
+
+-------------------------------------------XXX-------------------------------------
+
+#Session 6
+{Nested Objects, Destructuring, Array of Objects, Special Numbers in JS}
+
+*Object Destructuring-
+    -The destructuring assignment syntax in JavaScript expression makes it possible to unpack values from arrays,
+     or properties from objects, into distinct variables.
+    eg:
+        const obj={
+            name="hitesh",
+            age=23
+        }
+        const {name,age} = obj
+        console.log(name)                       //hitesh
+
+*Arrays are like objects in JS-
+    Arrays in JS do not have a data type but are instead treated as objects with their indices as properties
+    of the object, and elements of the array as values.
+            const arr=[];
+            console.log(typeOf(arr));                   //object
+            Array.isArray(arr);                         //true
+
+*Array Destructuring-
+    const arr=[1,2,3,4,5];
+    const [,b,c,d] = arr;
+    console.log(b,c,d);                               //2 3 4   
+
+*Array of Objects-
+    var student = [
+
+      {
+       name: "Kevin",
+       rollNumber: 10,
+       stream: "PCM"
+      },
+
+      {
+        name: "Martin",
+        rollNumber: 20,
+        stream: "PCM"
+      },
+
+      {
+         name: "Robert",
+         rollNumber: 30,
+         stream: "PCB"
+      }
+    ]
+Que: Given an array of objects as an argument, we have to return the name of student with maximum marks?   
+    ( Length of the array always greater than 0)
+
+    var student = [
+
+  {
+      name: "Kevin",
+      std_id: 10,
+      marks: 25
+  },
+  {
+     name: "Austin",
+     std_id: 20,
+     marks: 30
+  },
+  {
+      name: "Robin",
+      std_id: 30,
+      marks: 20
+  }
+
+    ]
+
+    let maxMarks = 0;
+    let res= "";
+    for(let i=0;i<student.length;i++){
+        if(student[i].marks>maxMarks){
+            maxMarks=student[i].marks;
+            res=students[i].name;
+        }
+    }
+
+*Floating Point Numbers-
+    let scale = 0;
+    let a = 1 / scale;
+    console.log(a);                //Infinity
+
+    let scale = 0;
+    let a = 0 / scale;
+    console.log(a);                //NaN
+
+    let scale = 0;
+    let a = -1 / scale;
+    console.log(a);                //-Infinity
+
+    let scale = 1;
+    let a = -0 / scale;
+    console.log(a);                //-0
+
+
+#Session 7
+{Math Functions & Constants, Arrow Functions, Pass by value, Pass by reference}
+
+-Math is a inbuild object in a JS which contains predefined functions
+
+1.trunc() method-
+    console.log(303.3*3);                          //909.90000000000000000000001
+    console.log(Math.trunc(303.3*3));              //909
+    console.log(Math.trunc(30.334));               //30
+
+-Math.trunc(x) returns the integer part of x.
+
+2.round() method-
+    var a =  4;
+    var b = 9;
+    console.log(Math.round(a/b));   // 0 
+
+    var a =  4;
+    var b = 8;
+    console.log(Math.round(a/b));   // 1
+
+    console.log(Math.round(34.859599*100)/100);               //34.85
+
+3.floor() method-
+    rounding to lower number
+    console.log(Math.floor(34.99));                            //34
+    console.log(Math.floor(34.05));                            //34
+
+4 ceil() method-
+    rounding off to higher number
+    console.log(Math.ceil(34.99));                            //35
+    console.log(Math.ceil(34.05));                            //35
+
+5.min() method-
+    console.log(Math.min(34,67,23,87,54,12))                       //12
+
+6.max() method-
+    console.log(Math.max(34,67,23,87,54,12))                       //87
+
+7.random() method-
+-Math.random() returns a random number between 0 (inclusive),  and 1 (exclusive):
+
+    
+    Math.floor(Math.random() * 10);                          // Returns a random integer from 0 to 9:
+    Math.floor(100000 + Math.random() * 900000);             //Returns between 100000-999999
+
+*Constants-
+-we have some constant values as well for example:  Math. PI
+
+8.Math.abs-
+    console.log(Math.abs(-89.09));                        //89.09
+
+9.Math.sqrt-
+    console.log(Math.sqrt(25));                           //5
+
+
+
+1.Function declaration syntax
+
+    function display() {
+        console.log('Hello');
+    }
+    display();                                              // Hello
+
+2.Function Expression syntax
+
+    var call = function (){
+        console.log('Hello');
+    }
+    call();
+
+3.Arrow function syntax
+
+    const arrFn = () => {
+        console.log('Hello');
+
+    }
+    arrFn();
+
+
+*Arrow Functions-
+-It is written with a () => {} format, where => is called the fat-arrow or just arrow.
+    If no argument then simply parenthesis.
+        var call = () => console.log('Hello');
+        call();                                         // Hello
+
+    If we have only one argument, then parentheses around parameters can be omitted. 
+        var call = (a) => console.log(a);
+        call(8);                                         // Hello
+                          or
+        var call = a => console.log(a);                                 //we csn skip brackets for single parameter.
+        call(8);                                         // Hello
+
+
+    We can directly return a result without retun keyword
+        const add = (a,b) => a+b;
+        res = add(5,6);
+        console.log(res);                              //11
+
+    const printHello = () => console.log("Hello world");
+
+    const area = function (l, b) {                          const area = (l,b) => l*b;
+        return l * b;
+    }
+
+
+*Pass by Value:
+    -All the primitive data types are passed by value.
+    -Any changes that we make in the passed item with not reflect in the original item.
+        var a = 10;
+        var b = a;
+        b = b + 10;
+        console.log(a);                                         //10
+        console.log(b);                                         //20
+
+        function add(num){
+        num = num + 10;
+        console.log(num);                                       //15
+        }
+
+        var num = 5;
+        add(num);
+        console.log(num);                                       //5
+
+*Pass by Reference:
+    -All the non primitive data types are passed by reference.
+    -Arrays, objects and functions all are passed by reference.
+    -Any changes that we make in the passed item will reflect in the original item.
+
+    const obj = {
+     name:  "Jhon"
+    }
+
+    var copy_obj =  obj;
+    console.log(obj.name);                                      // Jhon
+
+
+    copy_obj.name = "Khaby"
+    console.log(copy_obj.name);                                 //Khaby
+
+    console.log(obj.name);                                      //Khaby
+
+*Spread Syntax(...):
+    -Spread syntax can be used when all elements from an object or array need to be included in a new array or object.
+    -If any changes are made in the new object or array  those will not reflect in the original object or array.
+    -It will create separate object.
+
+    const obj = {
+     name:  "Lame"
+    }
+
+    var copy_obj =  {...obj};
+
+    console.log(obj.name);                                      //Lame
+
+    copy_obj.name = "Khaby"
+
+    console.log(copy_obj.name);                                 //Khaby
+
+    console.log(obj.name);                                      //Lame
+
+---------------------------------------------XXX---------------------------------------------
+
+
+#Session 8
+{Global Scope, Local Scope, Lexical Scope, Hoisting, Callback, Closure}
+
+*Scope :
+    -The scope is the extent to which a variable is accessible while executing the code.
+    
+    1.Global Scope :
+        var a = 10;                                     // variable 'a' global scope
+
+        function func(){
+        console.log("a is accessible within the function:", a);
+        }
+        func();
+
+        console.log("a is accessible outside the function:", a);
+
+    -Note: Global variable in one file, can be accessed in other file.
+
+    2.Local Scope :
+        -If we want a variable to be accessible locally in the program we define it:1.Within a function (Function scope  - var )
+                                                                                    2.Within a block (Block scope - let & const)
+        
+        1.Function Scope:
+            function func(){
+            var b = 20;                                                             // scope within the function
+            console.log("b is accessible within the function:", b);                 // 20
+            }
+            func();
+
+            console.log("b is not accessible outside the function:", b );           // error
+
+        2.Block Scope:
+            -Block scope is a local scope bounded between two curly brackets {}. 
+            -The block scope lets you limit the accessibility of all variables declared inside it.
+            -Variables declared using  let or const, can’t be accessed outside the curly brackets {}
+            -Variables declared using var, can be accessed outside the curly brackets {}. 
+
+    3.Lexical Scope:
+        -Lexical scope is ability for a inner scope to access variables from the outer scope.
+
+
+*Hoisting:
+    -What if we accidentally missed declaring a variable or function even before using it.
+    -Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope 
+     before code execution.
+        console.log(a);                                             //undefined
+        var a;
+
+    -Variables declared with const and let are not hoisted.
+    -“Function Declarations” are hoisted entirely.
+        func ();                                                  //hello
+
+        function func() {
+        console.log("hello");
+        }
+
+    -“Function Expressions” are hoisted partially.
+
+*Callback Functions:
+    -In JavaScript, a callback is a function passed into another function as an argument to be executed later.
+        function bikeRepair(funcToExecuteLater){
+            console.log("Working on bike");
+                //once the work is done
+            funcToExecuteLater();
+        }
+
+        function callOwner(){
+            console.log("Take back bike");
+        }
+
+        bikeRepair(callOwner);
+
+
+    eg-
+        function sum(n1, n2) {
+            console.log(n1 + n2);
+        }
+
+        function multiply(n1, n2) {
+            console.log(n1 * n2)
+        }
+
+        function calculator(num1, num2, operation) {
+            console.log(`Calculating on ${num1} and ${num2}`)
+            operation(num1, num2);
+        }
+
+        calculator(5, 5, sum);                                                         //10
+        calculator(5, 5, multiply);                                                    //25
+
+*Closure:
+    -If a function is created inside another function, it retains access to the scope of that outer function even after
+     that outer function returns, because the outer function is in the lexical scope of the function.
+
+
+
+
+
+--------------------------------------------XXX----------------------------------------------
+
+#Session 9
+{Advanced array callback functions, Sorting Map, Filter and Reduce, Advanced array functions 1.Splice 2.Slice}
+
+*forEach method: 
+    -forEach is invoked on an array, it iterates or loops through the array.
+    -Runs a Callback function on each value in the array.
+    -When the loop ends forEach returns undefined.
+
+    eg: const nums = [1, 2, 3, 4];
+        nums.forEach((value) => console.log(value));                  //1 2 3 4 
+
+        const nums = [1, 2, 3, 4];
+        nums.forEach((value, index) => {
+            console.log("Element " + value + " is at index " + index);    //Element 1 is at index 0
+        });                                                                 Element 2 is at index 1
+                                                                            Element 3 is at index 2
+                                                                            Element 4 is at index 3
+        
+
+*Find method:
+    -find() method returns the value of the first element in the provided array that satisfies the provided testing function.
+    
+    const array1 = [5, 12, 8, 130, 44];
+    const found = array1.find((element) => element > 10);
+    console.log(found);                                                         //12
+
+    const data = [
+    { _id: "1", name: "Vivek" },
+    { _id: "2", name: "Neha" },
+    { _id: "3", name: "Satya" },
+    { _id: "4", name: "Amit" },
+    ];
+    const res = data.find((item) => item._id === "1");
+    console.log(res);                                                           //{ _id: '1', name: 'Vivek' }
+
+*Sorting:
+    -sort() sorts elements of an array in-place and returns the sorted array.
+     eg: var arr = ["Xavi", "Zaltan", "Messi", "Aguero"];
+         arr.sort();
+         console.log(arr);                                                  //[ 'Aguero', 'Messi', 'Xavi', 'Zaltan' ]
+
+    Sorting Number Array:
+        -sort() tries to convert the array elements to strings first and sorts lexicographically (dictionary order).
+        eg:
+            const nums = [4, 20, 12, 11, 100, 0, 4];
+            nums.sort ((a, b) => a - b);
+            console.log(nums);
+
+
+    Que:Given an array of objects with different keys sort it using sort() method.Print the names of the people in ascending order of their age.
+        const array = [
+        {
+            name: "Kevi",
+            age: 25,
+        },
+        {
+            name: "Arnold",
+            age: 6,
+        },
+        {
+            name: "Sheila",
+            age: 56,
+        },
+        ];
+        array.sort((a,b)=>{a.age-b.age});
+        array.forEach((ele)=>console.log(ele.name));
+
+*Map method:
+    -map() method is used for creating a new array from an existing one, applying a function to each one of the
+     elements of the original array.
+    eg:
+        const arr = [10, 30, 50];
+        function mutiplyFn(item){
+            return item * 2;
+        }
+
+        const arrDoubled = arr.map(mutiplyFn);
+        console.log(arrDoubled);                                            // [ 20, 60, 100 ]
+        console.log(arr);                                                   // original array is unchanged
+
+        or
+
+        const arr = [10, 30, 50];
+        const arrDoubled = arr.map((item) => item * 2);
+        console.log(arrDoubled);
+
+*Filter:
+    -filter() method takes each element in an array and it applies a conditional statement against it.
+    - If this conditional returns true, the element gets pushed to the output array otherwise it will not be pushed.
+    eg:
+        const fruits = ['apple', 'banana', 'grapes', 'kiwi', 'orange'];
+        const newArr = fruits.filter((str) => str.length > 5);
+        console.log(newArr);                                                      // [ 'banana', 'grapes', 'orange' ]
+
+*Reduce:
 
 
 
 
 
 
-
-
+----------------------------------------------XXX------------------------------------------
