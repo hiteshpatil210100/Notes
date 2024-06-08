@@ -37,5 +37,250 @@ Space Complexity:
         Example: 2D arrays, nested data structures.
 
 #Session2
+{Introduction to collections/modules/library, Arrays}
+
+
+
+
+
+#Session 4
+{Debugging Template Introduction, MAp, Set, Hashmap/Hashset}
+
+ *Debugging:
+    -Process where we find and fix errors/bugs in code
+    1.Compile Time/ Compilation Errors
+    Examples 
+        JAVA - Error thrown due to case sensitivity. Eg. ‘INT’ is different from ‘int’
+        C++ - Missing semicolon, wrong #include statements
+        Python - Indentation related errors
+        JS - 
+    Termination related error (eg. missing semicolon, parenthesis etc.), function return statement missing etc.
+    Some common examples of this error include: undeclared variables
+                                                missing semicolon
+                                                typo in reserved/keyword
+                                                incorrect braces closing
+                                                mismatch/ absence in function return type and return statement
+                                                incorrect import
+    2.Runtime Errors:
+    Examples
+    Some common examples of this error include:
+        Division by zero
+        C++ - Segmentation Fault
+        Accessing array out of its limit
+        Null pointer exception
+        Memory/stack overflow/segmentation fault
+        Variable casting errors
+        Index Out Of Bound Exception - check edge cases and data type overflow and sizes (if code is in C++ or Java)
+    
+    3.Logical errors
+    Examples
+            Array: empty array, array with 1 element
+            Integer: positive/negative, 0, large overflowing cases
+            Linked list: null head, one node list, odd/even list
+            Trees: one node tree, skewed tree, perfect binary tree
+            String: empty string, large string, all unique, all vowel, special character, alphanumeric string
+            Stack: underflow, overflow
+            Array: empty array, array with 1 element - Integer: positive/negative, 0, large overflowing cases - linked list:
+             null head, one node list, odd/even list - trees: one node tree, skewed tree, perfect binary tree - string: empty string, 
+             large string, all unique, all vowel, special character, alphanumeric string - stack: underflow, overflow 
+*Map:
+    -Based on the concept of key-value pair
+    -Key = Unique Id
+    -Value = Details for that key
+    -Key and Value can be of different data types
+    -Properties:Keys CANNOT repeat, has to be unique
+                INSERT not possible if the key already exists
+                UPDATE Value for a Key
+                DELETE based on Key
+                POSITION doesn’t matter
+                SEARCH based on Keys (generally, this is more optimal) or values
+                SORT - may be sorted based on Key
+
+    -CRUD operations:1.set(key, value): Adds a new key-value pair to the map or updates the value of an existing key.
+                     2.get(key): Returns the value associated with the specified key, or undefined if the key is not found in the map.
+                     3.has(key): Returns a boolean indicating whether the specified key is present in the map.
+                     4.delete(key): Removes the key-value pair associated with the specified key from the map.
+                     5.clear(): Removes all key-value pairs from the map.
+
+*Set:
+    -Similar to map, Based only the concept of key. No values here! Key = Unique Id which can be of any data type.
+    -When we need to keep track of presence/absence of unique elements we use set.
+    -Properties:1.Keys CANNOT repeat, has to be unique
+                2.SIZE of the set is important. It tells us the count of unique keys
+                3.INSERT not possible if the key already exists
+                4.DELETE a Key
+                5.POSITION doesn’t matter
+                6.SEARCH based on Keys (generally, this is more optimal). Can take linear time
+    -CRUD operations:1.add(value): Adds a new value to the set.
+                     2.has(value): Returns a boolean indicating whether the specified value is present in the set.
+                     3.delete(value): Removes the specified value from the set.
+                     4.clear(): Removes all values from the set.
+
+*Hashmap & Hashset:
+
+
+
+
+
+--------------------------------------------XXX------------------------------------------
+
+#Session 5
+
+*Recursion:
+    -
+
+
+
+
+    
+
+
+
+
+
+
+
+
+DSA Questions:
+Session 1:
+    Q:Time and Space complexity.
+
+->1.int search (int arr[], int n, int target){
+        for(int i = 0; i < n; i++) {
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    TC = O(n)
+    SC = O(1)
+
+->2.public static ArrayList<Integer> findCommonElements(int[] arr1, int[] arr2) {
+        ArrayList<Integer> commonElements = new ArrayList<>();
+
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                if (arr1[i] == arr2[j]) {
+                    commonElements.add(arr1[i]);
+                    break;
+                }
+            }
+        }
+        return commonElements;
+    }
+
+    TC = O(n*m)
+    SP = O(min(n, m))
+
+->3.for (i = 0; i < N; i++) {
+        sequence of statements
+    }
+    for (j = 0; j < M; j++) {
+        sequence of statements
+    }
+
+    TC = O(n+m)
+    SP = O(1)
+
+->4.int sum = 0;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j <= i; j++){
+        sum = i+j;
+    }
+    }
+
+    TC = (n^2)
+    SC = (1)
+
+->5.for(int i = 0; i < a; i++) {
+        for(int j = 0; j <= b; j++) {
+            for(int k = 0; k <= c; k++) {
+            print(i, j, k)
+        }
+        }
+    }
+
+    TC = O(a*b*c)
+    SC = O(1)
+
+Q.You are given a positive integer 'N'. You have to find the sum of first 'N' natural numbers.
+
+Ans:
+    function naturalSum(n) {
+        let sum=0;
+        sum=n*(n+1)/2
+        return sum;
+    }
+
+    TC = O(1)
+    SC = O(1)
+
+         or
+    
+    function naturalSum(n) {
+    
+        if(n==0){
+            return 0;
+        }
+        let sum = naturalSum(n-1);
+        sum=n+sum;
+        return sum;
+    }
+
+    TC = O(n)
+    SC = O(n)
+
+Q.For an input year N, find whether the year is a leap or not.
+Ans:
+    function leapYearBasic(N) {
+        if(N%400==0||(N%4==0&&N%100!=0)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    TC = O(1)
+    SC = O(1)
+
+Q.Given an array of n elements and an integer x,find the index where x is present in the array. 
+  If there are multiple occurrences, find the leftmost one. If x is not present, return -1.
+Ans:
+    function findElement(n, arr, x) {
+        for(let i=0;i<n;i++){
+            if(arr[i]==x){
+                return i;
+                
+                
+            }
+
+        }
+        return -1;
+    }
+
+    TC = O(n)
+    SC = O(1)
+
+Q.Given a matrix of dimensions n x n having elements 1 to n*n distinct elements,
+ check whether the matrix is magic square or not.
+ Magic square is a square that has the same sum along all rows, columns and diagonals.
+Ans:
+    
+
+
+
+
+
+
+
+
+
+
+
+                                                    
+
 
 

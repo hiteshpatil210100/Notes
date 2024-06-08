@@ -1,0 +1,468 @@
+Session 1
+
+{Node.js, NPM, package.json and scripts, HTTP Server, Response Object, Request Object}
+
+*NodeJS is a runtime engine based on Chrome's V8 engine 
+
+*NPM - Node Package Manager:
+    -A CLI (command-line interface) tool for publishing and downloading packages
+
+*Start a new project:
+    1.Create folder and cd to it.
+    2.Move to the shell tab and type npm init -y. This will create a new package. json file
+    3.Now in your shell type out
+        npm install express
+     This will install “express” framework as a “dependency for the project
+    
+*package.json:
+    -Stores configuration for your project.
+    -The packages we install using npm for our project are called dependencies
+    -Two types of dependencies
+        1.production dependencies → listed under "dependencies" key;
+          installed in the server when you deploy the project.
+        2.development dependencies → listed under the "devDependencies" key,
+         only installed on your local system. Installed with a --save-dev flag along with npm install
+        Example: testing libraries like jest, or helper modules like nodemon.
+                 We just need them while developing our software. Not needed for the end-user.
+
+*scripts:
+    -Defines different commands you can use to start, test and build your project.
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+
+*HTTP Server:
+    -With Node.js installation we get a module named http.
+    -Used to create the server using Node.js which can receive requests and return a response.
+    -To use a server we need two primary things
+        host - the address where our server will be accessible (example: localhost)
+        port - the port of the machine where the server application is running
+
+    1.Create an HTTP Server: Step 1:
+        const http = require("http");
+    
+    2.Create an HTTP Server: Step 2:
+        -Use the createServer method on the http module to create a server
+            const server =  http.createServer()
+
+        -The createServer() method takes in a callback which is executed once the server receives a request from the client.
+            const server = http.createServer(() => {
+            console.log("Hello from server")
+            })
+    
+    3.Create an HTTP Server: Step 3:
+        -Finally we make this server instance “listen” for any requests. 
+            Specify the PORT number as the first argument (say 8082) 
+            A success callback as the second argument
+	
+            server.listen(8082, () => {
+                console.log("Listening...")
+            })
+
+        -And run the server with npm run dev
+
+    const http = require("http");
+    const server = http.createServer(() => {
+        console.log("Hello from server")
+        const date = new Date().toLocaleDateString();
+        const time = new Date().toLocaleTimeString();
+        console.log(`Hii ${date},${time}`); 
+    });
+    server.listen(8082, () => {
+        console.log("Listening...");
+    });
+
+    //Listening...
+    //[nodemon] restarting due to changes...
+    //[nodemon] starting `node index.js`
+    //Listening...
+    //Hello from server
+    //Hii 2/8/2024,4:41:54 PM
+
+
+*Sending Data with Response:
+    -To send some information back to the client like a JSON or an HTML string
+    -we use res.write() function which takes the data to be returned as an argument.
+    -It is in form of a string
+
+        const http = require("http");
+        const server = http.createServer((req, res) => {
+            const serverInfo = {
+            console.log("Hello from server")
+            const date = new Date().toLocaleDateString();
+            const time = new Date().toLocaleTimeString();
+            console.log(`Hii ${date},${time}`); 
+
+            };
+            res.writeHead(200, {"content-Type": "application/json"})
+            res.write(JSON.stringify(serverInfo));
+            res.end();
+        });
+        server.listen(8082, () => {
+            console.log("Listening...");
+        });
+
+
+*Request Object:
+    To distinguish the response based on what endpoint is being hit, we can use the url property of the request
+        req.url - contains the url of the request
+
+        const http = require("http");
+        const server = http.createServer((req, res) => {
+            const serverInfo = {
+            console.log("Hello from server")
+            const date = new Date().toLocaleDateString();
+            const time = new Date().toLocaleTimeString();
+            console.log(`Hii ${date},${time}`); 
+
+            };
+            if (req.url === "/status") {
+            res.writeHead(200, { "Content-Type": "application/json" }); //Adding Headers
+            res.write(JSON.stringify(serverInfo));
+            res.end();
+        } else {
+            res.writeHead(200, { "Content-Type": "text/html" }); //Adding Headers
+            res.write(`<h1>Hello from server</h1>`);
+            res.end();
+         }
+
+            
+        });
+        server.listen(8082, () => {
+            console.log("Listening...");
+        });
+
+
+1.What is HTTP server in Node JS?
+    Node. js has a built-in module called HTTP, which allows Node. js to transfer data over the Hyper Text Transfer Protocol (HTTP)
+
+2.What is Request object in Node JS?
+    req object represents the HTTP request and has properties for the request query string, body, HTTP headers, and so on.
+
+3.What is Response object in Node JS?
+    res object represents the HTTP response that the Node.js app sends when it gets an HTTP request
+
+
+Summery
+Node.js is a backend JavaScript runtime environment to to execute JS code without a browser
+You can use it to build to web server that listens for client requests and responds to it
+Node’s built-in http module’s createServer() method can be used to create an HTTP server
+The createServer() method accepts a callback function with two parameters, request and response
+    request denotes the incoming request object
+    response denotes the response object which will be send back to the client
+The callback function gets executed every time a new request is received
+The request object has properties like
+
+    method - type of HTTP request method
+    url - path of the resource requested for
+    headers - request headers
+
+You can use these values to conditionally respond to the requests based on the request properties like HTTP method, path or headers
+The response object methods can be used to set the response
+To set a response status code and headers, use the writeHead() method exposed by the response object. Eg: response.writeHead(200, { 'Content-Type': 'text/html' });
+
+    write() method accepts the text to be sent as response body
+    end() method tells the server the request has been completed
+
+To bind the HTTP server created using createServer() to a specific port, use the listen() method
+It also accepts a callback function which gets executed only once when the server is started
+To read data sent as request body, use the request object’s data and end events
+    data event is triggered if there’s data remaining in the stream to be read
+    end event is triggered if the request data stream is empty
+
+NPM is a repository for JavaScript packages.
+You can use npm install to download your project dependencies from the NPM registry
+The package.json file can be used to specify your project dependencies using its dependencies field
+Express.js is a Node framework for creating web applications and APIs
+You create an Express application handler by const express = require(‘express’); const app = express()
+It provides methods for each of the HTTP request method types like
+    app.get() for GET request
+    app.post() for POST request
+    app.all() is a special method that listens to all HTTP request types to a particular path
+
+To specify the callback for a particular route, let’s say GET request to /user, you do app.get("/user", callbackFunction)
+Using Express’s inbuilt json middleware, we can directly parse the JSON request body as a JavaScript object.
+To do that, add app.use(express.json()) before any routes
+You can use for example, request.body.jsonProperty1 to fetch a property in your request body, "jsonProperty1"
+The response object’s methods to use are
+
+    status() - to set the response status code
+    send() - send response body data
+    end() - trigger end of response
+
+
+Session 2 {Express.js, HTTP Requests in Express, Path and Query Params with Express, Controllers, Import/Export in Node.js, Routes}
+
+*Using Express
+
+1.Create an app instance
+
+    const express = require("express");
+
+    const app = express();
+
+    const PORT = 8082;
+
+2. Listening to PORT using app.listen
+
+    app.listen(PORT, () => {
+    console.log("Listening at", PORT);
+    });
+
+3.Adding a route
+
+    app.get("/", (req, res) => {
+    console.log("Current Route: /");
+    });
+
+4.We can work normally with res object like we did with HTTP file. 
+
+    app.get("/", (req, res) => {
+    res.write(`<h1>Hello</h1>`);
+    res.end();
+    });
+
+5.Or with express installed we can do
+
+    app.get("/", (req, res) => {
+    res.send(`<h1>Hello</h1>`); //For sending data back
+    });
+
+    OR
+
+    app.get("/", (req, res) => {
+    res.json({serverStatus: “active”}); //to send JSON 
+    });
+
+Activity 1.1 - Extending APIs with Express
+
+    Update your HTTP server app to use express
+    / - Returns <h1>Currency Database</h1>
+    /currencies - returns the JSON object to the client (Status code 200)
+    JSON Data - response.json
+
+Code:
+
+const express = require("express");
+const {data} = require("./DB/currency.json");
+
+const app = express();
+const PORT = 8081;
+
+app.get("/", (req, res) => {
+    return res.send('<h1'>Hello from server</h1>)
+});
+
+app.get("/status", (req, res) =>{
+    return res.json({serverStatus:'Active'})
+
+});
+
+app.get("/status", (req, res) =>{
+    return res.json(data)
+    
+});
+
+app.listen(PORT, ()=>{
+    console.log("Listening....");
+});
+
+*Express Request Object :
+    req.params - An object containing properties mapped to the named route “parameters”
+    <endpoint>/v1/users/:name (example: endpoint/v1/users/viveknigam)
+    On the backend → req.params = {"name" : "viveknigam"}
+
+*Request Query Params:
+    req.query - An object containing a property for each query string parameter in the route.
+    Example - endpoint/v1/users?category=pro
+        On the backend -> req.query = {“category”: “pro”}    
+
+*Controllers:
+    The callback functions which we pass as the second argument when defining routes
+    We can separate them in different files
+    These functions are called as controllers
+    app.get("/", callbackFunction)
+    We conventionally name controllers with <route>.controller.js and often put them in a controllers folder.
+
+    We should export it out from currencies.controllers.js and import it in index.js
+
+    When working within a vanilla node.js environment, we cannot use import/export statements to export or import the files.
+
+    Here we need to use the require and module.exports syntax
+
+*Using module.exports:
+    Let’s take an example that we want to export getCurrencies function. For creating a default export
+
+    module.exports = getCurrencies 
+
+*Require:
+    To use the exported values using module.exports, we use a function called require
+    It takes in the file name as parameter and returns the exports object of the file.
+
+    //In index.js
+    const getCurrencies = require("./controllers/currencies.controller")
+
+
+
+
+Session 3 
+{Express Routes, Validating Routes, Using Joi, Storing Server Secrets with environment variables}
+
+-We can use express router module to manage our routes in a separate file
+
+Step 1 - Moving the routes to their own file:
+    -Move all the existing routes in the index.js to routes/currencies.routes.js along with its controller imports.
+
+Step 2 - Creating a router:
+    -Express has a constructor function to initialize a new Router instance
+        const router = require("express").Router();
+
+    -Define the routes using router (like we used to do with app)
+
+
+        router.get("/");
+        router.get("/currencies", getCurrencies);
+        router.get("/currencies/:id", getCurrencyWithSymbol);
+
+    -And finally export the router instance
+
+        module.exports = router;
+
+
+Step 3.1 - Use the routes:
+    -Now import all the routes in your index.js 
+        //In index.js
+        const currencyRoutes = require("./routes/currencies.routes");
+
+    Now to use these routes, we have a function in the express app object called use() that takes in two parameters
+    route (string)
+    middleware for the route → Here it will be the object we imported.
+
+    app.use("/currencies", currencyRoutes);
+
+Step 4 - Update the exported routes:
+    So we can update our routes FROM
+
+    router.get("/");
+    router.get("/currencies", getCurrencies);
+    router.get("/currencies/:id", getCurrencyWithSymbol);
+
+    TO
+
+    router.get("/", getCurrencies);
+    router.get("/:id", getCurrencyWithSymbol);
+
+*Validations using Joi:
+    Joi is a validation library that helps us define a schema for our data
+    And validate a set of data against that schema
+    -npm install joi
+
+    -Creating a Joi Schema:
+    1.The first step in Joi validation is to set a schema for the data object
+        const Joi = require("joi");
+    2.Create a schema with the functions in the Joi object
+        const schema = Joi.object()
+    
+    -Adding Schema Keys
+
+    Joi object supports method chaining, where you can call one method on the result of the previous one.
+
+    //Something like
+    object.function().function().function()...
+
+    Joi has a function called keys() that takes in an object schema
+    Here you can specify what keys need to be passed through what all checks
+    //Defined age should be a number
+
+        const schema = Joi.object().keys({
+        age: Joi.number()
+        })
+    
+    Specifying that the number should be an integer
+
+        //Age should be a number and integer
+        const schema = Joi.object().keys({
+        age: Joi.number().integer()
+        })
+
+    Adding a range to the age parameter
+
+        //Age should be a number and an integer between 0 and 100
+        const schema = Joi.object().keys({
+        age: Joi.number().integer().min(0).max(100)
+        })
+
+    Specifying that at least one of the keys should be present
+
+        //At least one of phone or email should be present
+        const schema = Joi.object().keys({
+        phone: Joi.number(),
+        name: Joi.string(),
+        email: Joi.string(),
+        }).or(“phone”, “email”)
+
+    -Create a validator function:
+    Now to conveniently use this schema to validate our request we will create a helper function
+        const getQueryErrors = (data) => {
+        const result = schema.validate(data);
+        return result.error;
+        }
+    The above function will take in the data as an object and then validate it against the schema we just created
+    The validate() function takes in the data and returns an object
+    The returned object contains an error object which has a lot of useful information about the data and the error it was subjected to
+
+    Now we can easily use this function in our searchUsersByQuery() controller
+    If the error is returned then return the error along with a 422 status.
+        const searchUsersByQuery = (req, res) => {
+        const gender = req.query.gender;
+        const age = req.query.age;
+        
+        const error = getQueryErrors({ age, gender });
+
+        if (error) {
+            return res.status(422).json(error);
+        }
+
+        //...rest of the processing logic
+        }
+
+
+    
+
+
+
+
+
+
+
+
+Session 4
+{Middleware, Globally & Selectively Applying Middleware, Storing data in MongoDB, Using Mongoose ODM}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

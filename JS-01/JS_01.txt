@@ -704,3 +704,11 @@ Que: Given an array of objects as an argument, we have to return the name of stu
 
 
 ----------------------------------------------XXX------------------------------------------
+
+*parseInt():
+    -The parseInt() function parses a string argument and returns an integer of the specified radix (the base in mathematical numeral systems).
+    eg:
+        1.
+            console.log(parseInt('123'));                               //123
+            console.log(parseInt(123/10));                              //12
+                   

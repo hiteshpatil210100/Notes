@@ -1,3 +1,679 @@
 #Session1
 {React}
 
+-Libraries are typically more loosely coupled, meaning that the library's code can be used independently
+ of the application's code. Frameworks provide a more comprehensive set of functionality and often include
+ a wide variety of pre-built components.
+
+-With vanilla JS, every minor UI change needs to update the entire DOM. React updates only part of the page which needs to be changed
+
+*Getting Started:
+    1.Installation
+        First, install the global package:
+                npm install -g create-react-app
+    2.Creating an App
+        Now you can use it to create a new app:
+                create-react-app hello-world
+    3.Starting the Server
+        Run npm start to launch the development server. 
+        The browser will open automatically with the created app’s URL.
+
+Q.How does npm start work? What all processes are happening in the background?
+Ans:An npm script is just a shortcut to run a series of node commands on your project. Any npm script, 
+    meaning any node.js commands listed under a package.json file's "scripts" section, are executed through node.js
+    when you call them. So npm start runs the node script that is listed under start in the package.json.
+    As in the article that cbr mentioned in a comment, in the case of create-react-app, this happens:
+        A new instance of the WebpackDevServer from the library of the same name is created, passing in the compiler
+    and configuration. Webpack is run here by the WebpackDevServer. A listener method on the instance is called, 
+    passing in the port and host values. This then clears the console and puts up the text “ Starting the development server…”.
+    The browser is opened with the correct dev URL. Lastly, two listeners are added for when the process is killed, 
+    which turns off the web server, and exits the start.js process.
+
+
+*Rendering elements with React:
+    
+    -The HTML DOM created by the browser allows us to interact with the HTML elements using JavaScript.
+     React has its own Virtual DOM, which basically is a DOM tree representation in JavaScript, to speed up updating the UI.
+     The Virtual DOM finds out what changes were made and intelligently updates the Browser’s DOM without updating the whole of it.
+
+    -render() method
+        Mandatory as defines the UI to be displayed
+        To return only a single encapsulating parent element
+
+    -root.render() 
+        Injects (displays) a React element to the specific container specified in the DOM
+        Required to make react work i.e. bridges React code to Browser HTML
+
+                        index.JS
+
+                        import { createRoot } from "react-dom/client";
+                        import React from "react";
+
+                        class MyComponent extends React.Component {
+                        render() {
+                            return (
+                            <div>
+                                <h1>Hitesh</h1>
+                            </div>
+                            );
+                        }
+                        }
+
+                        const rootElement = document.getElementById("root");
+                        const root = createRoot(rootElement);
+                        root.render(<MyComponent />);
+
+*JSX:
+    JSX stands for JavaScript XML.
+    JSX allows us to write HTML in React.
+    JSX makes it easier to write and add HTML in React.
+    JSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement()  and/or appendChild() methods.
+    JSX converts HTML tags into react elements.
+    JSX is a JavaScript that prettified to look like HTML.
+    Browsers can’t read JSX. It has to be transpiled (eg: Using Babel)
+
+*State:
+    -React state is a built-in object that is used to contain data or information about the component.
+     A component's state can change over time; whenever it changes, the component re-renders.
+    -State for a class component is initialised inside constructor()
+    
+        constructor(props) {
+            super(props);
+            this.state = { 
+                count: 0 
+            };
+        }
+
+*Props
+    -Props is short for properties and they are used to pass data between React components.
+    React’s data flow between components is uni-directional (from parent to child only).
+
+
+                            counter.js 
+
+                                import { createRoot } from "react-dom/client";
+                                import React from "react";
+                                import "./styles.css";
+                                export default class Counter extends React.Component {
+                                    constructor(props) {
+                                        super(props);
+                                        this.state = {
+                                        count: 0
+                                        };
+                                    }
+                                    incr = () => {
+                                        this.setState((currState, currProps) => {
+                                        return { count: currState.count + currProps.diff };
+                                        });
+                                        console.log(this.state.count);
+                                    };
+                                    decr = () => {
+                                        this.setState((currState, currProps) => {
+                                        return { count: currState.count - currProps.diff };
+                                        });
+                                        console.log(this.state.count);
+                                    };
+                                    render() {
+                                        return (
+                                        <div>
+                                            <h1>{this.state.count}</h1>
+                                            <button onClick={this.incr}>+{this.props.diff}</button>
+                                            <button onClick={this.decr}>-{this.props.diff}</button>
+                                        </div>
+                                        );
+                                    }
+                                }
+
+                            App.js
+                                import React from "react";
+                                import Counter from "./counter.js";
+
+                                export default class App extends React.Component {
+                                    render() {
+                                        return (
+                                        <div>
+                                            <Counter diff={1} />
+                                            <Counter diff={10} />
+                                            
+                                        </div>
+                                        );
+                                    }
+                                }
+
+
+*ES6 Modules: Default export:
+    -Increase readability by splitting large code into files → Modules
+    -Can contain classes or a set of related functions
+    -Variations - Default & Named export
+    -Only 1 default export per module
+    -Recommendation: Have 1 Module for each class component
+
+                        // File: src/session1/Header.js
+                        class Header extends React.Component {
+                        render() {
+                            return (<h1>Example header</h1>)
+                        }
+                        }
+
+                        export default Header;
+
+*How to import:
+    -Use the “import” keyword
+    -Use the “from” keyword to point to the file
+        E.g. import <something> from <somewhere>
+
+                        // File: src/index.js
+                        import Header from "./session1/Header";
+
+                        class App extends React.Component {
+                        render() {
+                            return <Header />;
+                        }
+                        }
+
+ES6 Modules: Default export (Another way):
+
+                            class Header extends React.Component {
+                            // ...
+                            }
+
+                            export default Header;
+
+
+                                     or
+
+                                export default class Header extends React.Component {
+                                    // ...
+                                }
+
+*Named Export: (export):
+    With named exports, one can have multiple named exports per file. 
+    Then import the specific exports they want surrounded in braces. 
+    The name of imported module has to be the same as the name of the exported module.
+
+                                import React from 'react';
+
+                                class Counter extends React.Component {
+                                    // ...
+                                }
+
+                                class Footer extends React.Component{
+                                    //...
+                                }
+
+                                class Header extends React.Component{
+                                    //..
+                                }
+
+                                export default Counter;
+                                export {Header,Footer};
+
+                        
+
+*Intro to Lifecycle methods (Class components):
+    Each component in React has a lifecycle which you can monitor and manipulate during its three main phases.
+    The three phases are: Mounting, Updating, and Unmounting.
+    
+    1.Mounting means putting elements into the DOM.
+        -React has four built-in methods that gets called, in this order, when mounting a component:
+            constructor()
+            getDerivedStateFromProps()
+            render()
+            componentDidMount()
+        -The render() method is required and will always be called, the others are optional and will be called 
+         if you define them.
+    
+    2.Updating
+        -The next phase in the lifecycle is when a component is updated.
+        -A component is updated whenever there is a change in the component's state or props.
+        -React has five built-in methods that gets called, in this order, when a component is updated:
+            getDerivedStateFromProps()
+            shouldComponentUpdate()
+            render()
+            getSnapshotBeforeUpdate()
+            componentDidUpdate()
+        -The render() method is required and will always be called, the others are optional and will be called 
+         if you define them.
+
+    3.Unmounting
+        -The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
+        -React has only one built-in method that gets called when a component is unmounted:
+                componentWillUnmount()
+                componentWillUnmount
+        -The componentWillUnmount method is called when the component is about to be removed from the DOM.
+
+
+*Deeper into Lifecycle methods:
+    1.render():
+        -Defines what needs to be displayed on the page
+        -The only necessary method in a class component
+        -Gets invoked:
+                        On mount
+                        On update (due to state or prop change)
+
+    2.constructor():
+        -Required if we need to initialise state
+        -Only place where we should assign to this.state  directly
+        -Called only on beginning of Mounting 
+        -To call super(props) as the first statement
+        -this.props will be undefined otherwise
+
+        constructor(props) {
+            super(props);
+            this.state = { name: "" };
+        }
+
+    3.componentDidMount():
+        -Called immediately after inserting a component to the DOM tree i.e. post 1st render
+        -DOM elements will be available at this point
+        -As render() would’ve already been called for the first time
+        -Good place to make an API request and load data to DOM
+
+        -Order of invocation for mounting: 
+            constructor()
+            render()
+            componentDidMount()
+
+*Display user data on load:
+    -Use axios to fetch data from https://reqres.in/api/users/1
+    -Display the email id returned on the page
+
+                                import axios from "axios";
+                                import React, { Component } from "react";
+
+                                export default class CDMount extends Component {
+                                constructor(props) {
+                                    super(props);
+                                    this.state = {
+                                    email: ""
+                                    };
+                                }
+                                fetchEmail = async () => {
+                                    let URL = "https://reqres.in/api/users/1";
+
+                                    let response = await axios.get(URL);
+                                    this.setState({
+                                    email: response.data.data.email
+                                    });
+                                };
+                                componentDidMount() {
+                                    this.fetchEmail();
+                                }
+
+                                render() {
+                                    return (
+                                    <div>
+                                        <h3>{this.state.email}</h3>
+                                    </div>
+                                    );
+                                }
+                                }
+
+*componentDidUpdate():
+    -Called immediately after the component is updated (re-rendered)
+    -Component re-renders when State or Props changes
+    -componentDidUpdate(prevProps, prevState)
+    -Has access to the previous props and state values
+    -Allows to take action based on prop or state change
+
+*Lifecycle methods:
+    render() - called once if the component is mounted, updated or unmounted
+    constructor() - required if needed to initialise state in class components
+    componentDidMount() - best option to make API calls to display data on page load
+    componentDidUpdate() - can be used to take action on re-render (eg: on prop change)
+    componentWillUnmount() - clean up timers or cancel network requests
+
+*Component Hierarchy:
+    1.Will the children re-render if parent re-renders?
+    -Always
+
+    2.Will the parent re-render if one of its children re-renders?
+    -No.
+
+    3.Will a component re-render if one of its siblings re-renders?
+    -No.
+
+*Function Components:
+    -Are Javascript functions
+    -Accept props as a function argument
+    -Returns JSX directly
+    -No render() method used
+
+    // File: src/App.js
+
+        function WelcomeComponent() {
+            return <h2>Hey there, Jack!!!</h2>;
+        }
+
+*How state works in Class based Components:
+
+constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+}
+
+<input
+  type="number"
+  name="name"
+  value={this.state.count}
+/>
+
+handleCountChange = (e) => {
+    this.setState({
+      count: e.target.value
+    });
+};
+
+
+*Initialising state and state handler using Hooks:
+                import { useState } from "react";
+
+                function WithFunctions(props) {
+                const [count, setCount] = useState(0);
+
+                const handleCountChange = (e) => {
+                    setCount(e.target.value);
+                };
+
+                return (
+                    <div>
+                    <input
+                        type="number"
+                        name="name"
+                        value={count}
+                        onChange={handleCountChange}
+                    />
+                    </div>
+                );
+                }
+
+*The useState() function (aka Hook):
+    -The useState() makes available a state value to be managed within the function
+    -Takes the initial state value as the argument
+    Returns an array with two elements
+        -The latest state value on each render
+        -A Function to update the state
+                        const [count, setCount] = useState(0);
+                               latest  fn to change     default value
+                               value       value
+
+1.Initialising state:
+    const [count, setCount] = useState(0);
+
+2.Receiving prop value:
+    function WithFunctions(props) {
+
+    }
+
+3.Using state value:
+    <input
+    type="number"
+    name="name"
+    value={count}
+    />
+
+4.Updating state:
+    const handleCountChange = (e) => {
+        setCount(e.target.value);
+    };
+
+5.Declaring functions:
+    const handleCountChange = (e) => {
+        
+    };
+
+
+Q: What will happen if we use local variable instead of  useState() hook?
+-Updates count correctly But, component doesn’t re-render as count isn’t React state.
+
+*Conditional Rendering:
+
+
+        function App() {
+        const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+        let button;
+        
+        if (isLoggedIn) {
+            button = <button>Log out</button>;
+        } else {
+            button = <button>Log in</button>;
+        }
+
+        return <div>{button}</div>;
+        }
+
+
+*Odd Even Conditional Rendering:
+
+            import { useState } from "react";
+            export default () => {
+            const [num, setNum] = useState("0");
+            let text;
+            if (num % 2) {
+                text = <h1>Odd</h1>;
+            } else {
+                text = <h1>Even</h1>;
+            }
+            return (
+                <div>
+                <h1>Odd Even</h1>
+                <input
+                    type="number"
+                    value={num}
+                    onChange={(e) => {
+                    setNum(e.target.value);
+                    }}
+                />
+                <h1>{num % 2 ? "Odd" : "Even"}</h1>
+
+                {text}
+                </div>
+            );
+            };
+
+*Intro to Lists:
+    -In React, you will render lists with some type of loop.
+    -The JavaScript map() array method is generally the preferred method.
+
+    Example:
+            function Car(props) {
+            return <li>I am a { props.brand }</li>;
+            }
+
+            function Garage() {
+            const cars = ['Ford', 'BMW', 'Audi'];
+            return (
+                <>
+                <h1>Who lives in my garage?</h1>
+                <ul>
+                    {cars.map((car) => <Car brand={car} />)}
+                </ul>
+                </>
+            );
+            }
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<Garage />);
+
+    Example:
+            function Car(props) {
+            return <li>I am a { props.brand }</li>;
+            }
+
+            function Garage() {
+            const cars = [
+                {id: 1, brand: 'Ford'},
+                {id: 2, brand: 'BMW'},
+                {id: 3, brand: 'Audi'}
+            ];
+            return (
+                <>
+                <h1>Who lives in my garage?</h1>
+                <ul>
+                    {cars.map((car) => <Car key={car.id} brand={car.brand} />)}
+                </ul>
+                </>
+            );
+            }
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<Garage />);
+
+*React Router:
+    -React Router is a standard library for routing in React. 
+    -It enables the navigation among views of various components in a React Application, allows changing the browser URL, 
+     and keeps the UI in sync with the URL.
+    
+    Step 1:To install react-router in your application write the following command in your terminal
+        npm i react-router-dom
+    Step 2: Importing react router
+        import { BrowserRouter, Routes, Route } from "react-router-dom";
+        Wrap your application with <BrowserRouter> <App /> <BrowserRouter />
+    Step 2: Define routes
+        <Route path="/" element={<HomeComponent />} />
+        <Route path="/books" element={<BooksComponent />} />
+    Step 3: Add navigation
+        Users do not type the URL routes. They need buttons/links to help them navigate.
+        Add some <nav>
+
+    The Main Components of React Router are:
+        BrowserRouter: BrowserRouter is a router implementation that uses the HTML5 history API(pushState, 
+            replaceState, and the popstate event) to keep your UI in sync with the URL. It is the parent component 
+            that is used to store all of the other components.
+        Routes: It’s a new component introduced in the v6 and an upgrade of the component. 
+            The main advantages of Routes over Switch are:
+                -Relative s and s
+                -Routes are chosen based on the best match instead of being traversed in order.
+        Route: Route is the conditionally shown component that renders some UI when its path matches the current URL.
+        Link: The link component is used to create links to different routes and implement navigation around 
+            the application. It works like an HTML anchor tag.
+
+// Filename - App.js
+
+import React, { Component } from "react";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+} from "react-router-dom";
+import Home from "./component/home";
+import About from "./component/about";
+import Contact from "./component/contact";
+import "./App.css";
+
+class App extends Component {
+	render() {
+		return (
+			<Router>
+				<div className="App">
+					<ul className="App-header">
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+						<li>
+							<Link to="/about">
+								About Us
+							</Link>
+						</li>
+						<li>
+							<Link to="/contact">
+								Contact Us
+							</Link>
+						</li>
+					</ul>
+					<Routes>
+						<Route
+							exact
+							path="/"
+							element={<Home />}
+						></Route>
+						<Route
+							exact
+							path="/about"
+							element={<About />}
+						></Route>
+						<Route
+							exact
+							path="/contact"
+							element={<Contact />}
+						></Route>
+					</Routes>
+				</div>
+			</Router>
+		);
+	}
+}
+
+export default App;
+
+
+Qkart Frontend:
+
+
+cd /home/crio-user/workspace/hiteshpatil210100-ME_QKART_FRONTEND_V2/
+chmod +x setup.sh
+./setup.sh
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
