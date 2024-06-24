@@ -1,2 +1,588 @@
 Session 1
 {}
+
+*Structure of page:
+    Code
+
+    <!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>
+            
+        </body>
+    </html>
+
+    The <html>, <head>, and <body> are known as Tags
+
+    Best practice - Start your HTML files with a DOCTYPE declaration to tell the browser which kind of document to expect.
+
+
+*<html>, <head>, & <body> :
+    Every HTML page will (generally) have the html, head, and body tag.
+    1.<html> tag encloses all the page content
+        Hence it is also called the root element.
+    2.<head> tag defines the metadata (data about data *) of the page
+        Like title (which is displayed on browser tab) using the <title> tag
+        Meta tag which can be used to defined author and keywords for the page
+        Fonts for the page
+        Styles etc.
+    3.<body> tag contains the content which is displayed inside the browser window as a page.
+
+*<h1> to <h6> 
+    Headings help in emphasizing a section of text on a page
+    Sections can be separated by emphasis using different heading sizes.
+    Largest heading => most important section
+    Smallest heading => least important section
+    HTML Headings are created with h tags
+        H1 (<h1>) -> Largest most important heading
+        H6 (<h6>) -> Smallest, least important heading
+
+*<p> & <br/>
+    Most HTML pages have blocks of text a.k.a. paragraphs.
+    To add paragraphs of text to our page, we use <p> tags
+    Browsers add some (vertical) whitespace before and after the paragraph block
+        <p>This is a paragraph.</p>
+        <p>Another lengthy paragraph can be here</p>
+
+    A paragraph starts on a new line by default.
+    If you want to start text from new line, BUT not change the paragraph, we use a <br/> or break tag.
+        <p>Another lengthy paragraph can be here.<br/>
+            This will be in the same paragraph but new line</p>
+
+*HTML Lists :
+    Often we need to provide a list on a page - for content or links
+    Two types of list
+        1.Unordered or Bulleted Lists created by <ul>
+        2.Ordered or Numbered Lists created by <ol>
+    Each item under the list must be enclosed in its own <li> tag to denote it as a list item.
+
+    <ul>
+        <li>Google</li>                     o Google
+        <li>Facebook</li>                   o Facebook
+        <li>Twitter</li>                    o Twitter
+    </ul>
+
+    <ol>
+        <li>Step 1</li>                     1.Step 1
+        <li>Step 2</li>                     2.Step 2
+        <li>Step 3</li>                     3.Step 3
+    </ol>
+
+*HTML Attributes :
+    Attributes provides additional information about elements
+    Always specified in the start tag
+    Attributes usually come in name/value pairs like: name="value"
+
+    <ol>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ol>
+
+            ||
+
+    <ol type="I">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ol>
+
+
+#Session 2
+{anchor tags, absolute and relative links, bookmarks, images and use its attributes, block and inline elements}
+
+*Anchor Tag :
+    HTML <a> tag defines a hyperlink.
+    You can click on it to jump to a new page or a section of the current page
+    <a> tag has one important attribute -> href
+    href -> indicates the link’s destination.
+    The content for a tag can be text or even an image.
+
+    <html>
+        <head>
+            <title>Demo</title>
+        </head>
+        <body>
+            <a href="https://www.cricbuzz.com/">Live Score</a>
+        </body>
+    </html>
+
+    When we clicked on the link Live Score it will be:
+        1.either displayed in the current browser window
+        2.or we need to right click on the link and open it in a new window
+
+    -By default, the linked page will be displayed in the current browser window. This behaviour can be changed by using target attribute.
+    -The target attribute specifies where to open the linked document. target=“_blank” opens the document in new window or tab.
+
+    <html>
+        <head>
+            <title>Demo</title>
+        </head>
+        <body>
+            <a href="https://www.cricbuzz.com/" target="_blank">Live Score</a>
+        </body>
+    </html>
+
+We want jump from one page to another page on the web.
+
+*Absolute links :
+    Absolute links (or urls) => Full Web Address
+    Example: "https://resuminator.in", "https://crio.do".
+
+
+*Relative links :
+    Relative URL ⇒ A link to page within the website i.e. without the https:// or www part
+        Example: "/home", "/about"
+    We can also link files like images or other pages using the relative URLs
+        Example: "about/team.html" → Links to the team.html file in the about folder.
+    For previous folders add ../ before the file name.
+
+
+We have long web pages but instead of scrolling through it, we want to jump within a web page.
+
+*id attribute :
+    Used to specify unique id for HTML element, i.e. no two elements can have same id
+
+*Link Bookmarks :
+    Bookmarks can be useful to navigate within long pages
+    Used in navigation tabs and to link to sections within a page.
+    Two Steps to create a link bookmark
+        1.Use the id attribute in a tag to create a bookmark
+        2.Use the anchor tag's href attribute and set it to #<block-id> to link to it.
+
+            <a href="#section">Link to Section 1</a>
+
+            <h2 id="section">Section 1</h2>
+
+*Images :
+    Images can be displayed on a webpage using the <img> tag.
+        <img src="url"/>
+    The image tags needs one important attributes to display the image
+        src → or source → a link to the image (relative or absolute)
+    width → the horizontal length of the image on the page. Should be number (which is generally defined in pixels)
+    height → the vertical length of the image on the page.
+    alt → the alt text which is displayed in case the image fails to load.
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Images</title>
+        </head>
+        <body>
+        <h1>Adding an image</h1>
+            <img
+        src="https://cdn.pixabay.com/photo/2022/12/02/18/37/middle-spotted-woodpecker-7631440_1280.jpg" // mistake in pixabay
+        height="100px"
+        width="100px"
+        alt="Image not available"
+            />
+        </body>
+        </html>
+
+Let’s understand one use case:
+
+    Use the given HTML snippet
+    Contains 3 <a> tags and 3 <p> tags one underneath the other
+    Save the HTML and see the result
+
+        <a href="index.html">Test 1</a>
+        <a href="index.html">Test 2</a>
+        <a href="index.html">Test 3</a>
+
+        <p>This is my first text paragraph in html</p>
+        <p>This is my second text paragraph in html</p>
+        <p>This is my third text paragraph in html</p>
+
+        Q: What do you notice about the location of the content rendered from these tags?
+        Ans: <p> tags are displayed on new lines
+
+*Block and Inline Elements :
+        Block Elements                                                 Inline Elements
+Always starts on a new line.                                       Starts on the same line
+Takes up the full width available.                                 Takes up the width of the content
+Can contain an inline element                                      Cannot contain a block element (except for <a>)
+Examples of block elements -  <ol>,<ul>, <p>, <h1>                 Examples of inline elements- <a>, <img>,etc.
+
+
+#Session3
+{Div and Span Tags, Semantic Tags, Styling in HTML, Introduction to CSS, CSS Selectors, Linking stylesheet}
+
+*<div> tag
+    The <div> element is often used as a container for other HTML elements.
+    <div> have no required attributes.
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Div Tag</title>
+    </head>
+    <body>
+        <div style="background-color: orange;">
+        <h1>Sports</h1>
+        <ul>
+            <li>Cricket</li>
+            <li>Table Tennis</li>
+            <li>Badminton</li>
+        </ul>
+        </div>
+        <div style="background-color: lightblue;">
+        <h1>Food</h1>
+        <ul>
+            <li>Curd Rice</li>
+            <li>Pancakes</li>
+            <li>Pasta</li>
+        </ul>
+        </div>
+    </body>
+    </html>
+
+What if we want to highlight some part of text in a web page?
+
+*<span> tag :
+    The <span> element is an inline container used to mark up a part of a text, or a part of a document.
+    <span> have no required attributes.
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Span Tag</title>
+    </head>
+    <body>
+        <h1>Listing out your <span style="background-color: red" >favourite </span> hobbies  </h1>
+        <ul>
+            <li>Cricket</li>
+            <li>Table Tennis</li>
+            <li>Badminton</li>
+        </ul>
+        </div>
+    </body>
+    </html>
+
+*Semantic and Non Semantic Elements
+    <div> and <span> are non-semantic elements.
+    They do not describe anything about the content within them.
+    Semantic elements clearly describe the content within them.
+    Example - <section>, <header>, <footer>, <nav> and <article>
+    They work like block elements.
+
+    <header> -> containing the top level heading and subheading.
+    <nav> -> containing the index
+    <section> -> containing the List of books 
+    <article> -> each book’s title, image, author name, summary, and amazon link
+    <footer> -> Author attribution, and name 
+
+*Introduction to CSS :
+    Stands for Cascading Style Sheets.
+    Inline - Using style attribute (already did in last section)
+    Internal - Using <style> tag in the head of any HTML document
+    External - Specifying the styles in a separate .css file.
+    CSS is written inside curly braces {} and in key value pairs which end in a semicolon
+
+*Selectors in CSS :
+    -Element Selector - Select elements with same name
+    -Class Selectors - Select elements with same class attribute value
+        <style>
+            .title {
+                color: red;
+            }
+        </style>
+
+    -ID selectors - Select element with a particular id
+    Then in the styles we use the # symbol to select the item.
+        <style>
+            .text-red {
+                color: red;
+            }
+            #books-heading {
+                color: blueviolet;
+                background-color: yellow;
+            }
+        </style>
+
+*Pseudo-Class Selectors :
+    A pseudo class is used to define a special state of an element
+    Pseudo-class selector can be used to style an element based on conditions like
+        Bringing cursor over (hover) an element
+        Clicking on an element (active)
+        Visited link
+    :hover -> to change the styles of an element when the cursor is brought over it
+            article:hover {
+                background-color: lavender;
+            }
+
+    an element is being clicked on (active)
+        all_elements: active {
+                background-color: red;
+        }
+
+    
+*Linking Stylesheets :
+    The <link> tag defines the relationship between the current document and an external resource.
+
+    <link rel="stylesheet" href="styles.css">
+
+#Session4
+{Selector Specificity, Cascading in CSS, Inheritance in CSS, Using Developer Tools for CSS, Colors, Fonts}
+
+*Specificity :
+    When two CSS rules are in conflict, it is resolved using the concept of specificity
+    More specific the selector, higher the preference
+    Hierarchy (from highest specificity to lowest)
+        Inline Styles
+        ID Selectors
+        Class Selectors
+        Element Selectors
+    When selectors of equal Specificity are in conflict - Lower (or latest) rule in the stylesheet wins
+
+
+#Session 5
+
+{Box Model, Length Units, Relative & Absolute Units, Introduction to FlexBox}
+
+*CSS Box Model :
+    Every element in web design is a rectangular box.
+    CSS Box Model contains 4 parts which are (from out to in)
+        Padding
+        Margin
+        Border
+        Content
+    The width and height properties of CSS control the content area of the box.
+
+    Padding Box
+        White space around the content
+        Controlled using padding-* properties
+    Margin Box
+        Outermost layer wrapping content+padding+border.
+        Decides distance between the current box and other elements.
+        Controlled using margin-* properties
+
+*Units in CSS :
+    There are two types of units:
+    1.Absolute 
+        Absolute length displays content same on every device.
+        Examples are - pixels (px)
+
+    2.Relative  
+    Relative units in CSS can be split into three major categories
+        Font Relative Lengths - depend on the font size
+            Example - em, rem, etc. 
+        Viewport Relative Lengths - depend on the size of the screen/viewport
+            Example - vh, vw, vmin, vmax
+        Parent Relative Lengths - depend on the size of the parent.
+            Example - %
+
+*Introduction to Flexbox :
+    Flexbox is used to layout, align, and distribute space among items in a container.
+    It is useful when the size of the container/items is unknown and/or dynamic.
+    Flexbox is well-suited for application components like inside the navbar, or forms, or cards etc
+    Flexbox is made up of two main components
+        Flexbox Parent (Container)
+        Flexbox Children (Items)
+
+
+    Creating a Flexbox:
+        1.Start by defining display: flex to a block element
+            <!-- HTML -->
+                <nav></nav> 
+
+            /* CSS */
+                nav {
+                    display: flex;
+                }
+
+#Session 6
+{Adding items in flexbox, Placing and Aligning items in flexbox, Introduction to Responsive Design, @media queries, Introduction to Bootstrap
+Creating Navbar with Bootstrap}
+
+            <!-- HTML -->
+                <nav>
+                     <h2>Posts</h2>
+                    <ul>
+                        <li>Feed</li>
+                        <li>Week</li>
+                        <li>Month</li>
+                    </ul>
+
+                </nav> 
+
+            /* CSS */
+                nav {
+                    display: flex;
+                }
+
+
+    Adjusting items on the main axis :
+        -Now by default all flexbox items will be placed at the left end of the flexbox container.
+        -We can change 2 things here
+            1.Their placement inside the flex → either left, right, or center.
+            2.The space between them.
+
+        1.Placing Items inside the flex:
+            By default, the items are placed on the left end
+            We can move them to the right end or center using justify-content
+                -justify-content: flex-end
+                -justify-content: center
+
+        2.Distributing space between items:
+            The justify-content property also allows us to distribute space between the elements.
+            We can spread out the items to cover the available space, i.e. 1st item on the start, 2nd item towards the very end.
+            This is done by - justify-content: space-between
+
+    Aligning items along the cross axis:
+        We can also align flex items along the cross axis (by default - top to bottom)
+        We do that by using the align-items property
+        By default, the items are placed at the start of the cross axis, but we can place them at the bottom, or even at the center
+
+    Wrapping flex items:
+        By default, all the items will try to fit along the main axis.
+        But we can change this behavior and wrap the extra items (which do not fit the flex-container's width) to move to the next line.
+        Use flex-wrap: wrap to wrap the items to the next flex line.
+
+    Switching Direction of Flex:
+        flex-direction → switch the orientation and position of the main and the cross axes.
+        The flex-direction: column would set
+        Main axis → Top to bottom
+        Cross axis → Left to right
+
+
+*Introduction to Responsive Web Design
+
+    A responsive website "responds" according to the screen size it is being rendered on.
+    To style the elements on the page depending on the screen size, we use the @media query in CSS.
+    Use @media queries to define breakpoints of a page.
+
+    Breakpoints:
+        Breakpoints define the width of different screen sizes on which our website can be viewed.
+        One way to think about breakpoints is → Starting with mobile, the "point" where your design starts to "break"
+        There are some standard breakpoints used in CSS.
+        We can conditionally define CSS for different breakpoints using CSS @media rule.
+            320px or 375px  -> Mobile Phones
+            480px  -> Small tablets
+            640px or 768px  -> Normal tablets
+            960px or 1024px ->  Laptops and Desktops
+            1280px -> Hi Resolution Laptops
+
+    @media Rule:
+        The @media rule allows us to define CSS for different "media"
+        It is written as :
+
+            @media [media-type] ([media-feature]) {
+            /*Styles for this media*/
+            }
+
+        When moving towards larger screens from our small screen design, we can define breakpoints as a media-feature for a particular media type
+
+    Using @media Rule:
+        We will use 375px (mobile), 768px (tablet), 1024px (laptops), and 1280px (hi-res laptops)
+        Define a meta tag in the head with name="viewport" like this to make your media queries work.
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        Use min-width to define your media queries
+        To define a breakpoint write a media query like ⬇️
+
+            @media (min-width: 375px) {
+                /*Define Styles here*/
+            }
+
+
+        The above media query will allow you to define styles for screens with at least 375px of width
+
+
+
+
+
+#Session 7
+{Creating Navbar with Bootstrap, Fitting images, CSS Grids, Positioning in Grids }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
